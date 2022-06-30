@@ -1,0 +1,140 @@
+
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <title>Bootstrap Example</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+      <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+    </head>
+    <body>
+    
+        <style>
+            
+    .table th{
+        background-color:antiquewhite
+    }
+      .addnew{
+          background-color:mediumblue;
+        color:white;
+          float:right;
+         
+      }      
+    </style>
+    
+    
+    <div class="w3-container">
+        <div id="addnew" class="w3-modal">
+            <div class="w3-modal-content">
+                <header class="w3-container w3-teal"> 
+                    <span onclick="document.getElementById('addnew').style.display='none'" 
+                    class="w3-button w3-display-topright">&times;</span>
+                    <h2>Manage Airline</h2>
+                </header>
+        
+            
+    <div class="container">
+        
+        <form class="form-horizontal" action="/action_page.php"  [formGroup]="airlineform" (ngSubmit)="AddAirline()">
+    <br>
+          <div class="form-group">
+            <label class="control-label col-sm-2" for="email">AirlineName:</label>
+            <div class="col-sm-10">
+                <input type="text" placeholder="AirlineName" formControlName ="AirlineName" class="form-control">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-sm-2" for="pwd">ContactNumber:</label>
+            <div class="col-sm-10">          
+                <input type="number" placeholder="ContactNumber" formControlName ="ContactNumber" class="form-control" >
+            </div>
+          </div>
+        
+    
+          <div class="form-group">
+            <label class="control-label col-sm-2" for="pwd">ContactAddress:</label>
+            <div class="col-sm-10">          
+                <input type="text" placeholder="ContactAddress" formControlName ="ContactAddress" class="form-control" >
+            </div>
+          </div>
+    
+          <div class="form-group">
+            <label class="control-label col-sm-2" for="pwd">UploadLogo:</label>
+            <div class="col-sm-10">          
+                <input type="text" placeholder="UploadLogo" formControlName ="UploadLogo"class="form-control" >
+            </div>
+          </div>
+
+         
+          <div class="form-group">        
+            <div class="col-sm-offset-2 col-sm-10">
+              <button type="submit" style="background-color:green;color:white" class="btn btn-default">Submit</button>
+              
+            </div>
+          </div>
+        </form>
+      </div>
+          </div>
+        </div>
+     </div>
+                  
+    
+    <div class="container">
+      <br><br>
+        <button onclick="document.getElementById('addnew').style.display='block'" class="w3-button addnew" >Add Airline</button>
+      
+      <table class="table">
+        
+        <thead>
+          <tr>
+            <th>Airline Id</th>
+            <th>AirlineName</th>
+            <th>Contact Number</th>
+            <th>Contact Address</th>
+            <th>Logo</th>
+            <th>Modified User</th>
+            <th>Modified Date</th>
+            <th>Status</th>
+          
+          </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of dataSource">
+      
+                <td>{{item.airlineId}}</td>
+                <td>{{item.airlineName}}</td>
+                <td>{{item.contactNumber}}</td>
+                <td>{{item.contactAddress}}</td>
+                <td>{{item.uploadLogo}}</td>
+                <td>{{item.modifiedId}}</td>
+                <td>{{item.modifiedDate | date}}</td>
+                
+                  <td div id="block" *ngIf="item.isActive">
+                      <button (click)='blockAirline(item.airlineId,false)'  class="w3-button addnew"  style="background-color:grey;color:white;width:80px;" >block</button>
+                  </td>
+                
+                  <td div id="unblock" *ngIf="!item.isActive">
+                      <button (click)='blockAirline(item.airlineId,true)'  class="w3-button addnew"  style="background-color:blueviolet;color:white;width:80px;" >Unblock</button> 
+                  </td>
+        
+              </tr>
+        </tbody>
+      </table>
+    </div>
+    
+    </body>
+    </html>
+    
+    
+    
+    
+    
+    
+    
+    
+    

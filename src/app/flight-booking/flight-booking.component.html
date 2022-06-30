@@ -1,0 +1,215 @@
+
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <title>Bootstrap Example</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+      <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+    </head>
+    <body>
+    
+        <style>
+            
+    .table th{
+        background-color:antiquewhite
+    }
+      .addnew{
+          background-color:mediumblue;
+        color:white;
+          float:right;
+         
+      }      
+    </style>
+    
+    
+<div class="container">
+    
+    <h5><table class="table">
+    
+        <thead><tr style="background-color:antiquewhite;width:1100px;height:30px;padding-left:100px"> &nbsp; &nbsp; Search</tr>
+        </thead>
+    </table>
+</h5>
+
+    <form class="form-horizontal" action="/action_page.php"  [formGroup]="searchform" (ngSubmit)="SearchFlight()">
+<br>
+      <div class="form-group">
+        <label class="control-label col-sm-2" for="email">Source:</label>
+        <div class="col-sm-10">
+            <input type="text" placeholder="Source" formControlName ="Source" class="form-control">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-sm-2" for="pwd">Destination:</label>
+        <div class="col-sm-10">          
+            <input type="text" placeholder="Destination" formControlName ="Destination" class="form-control" >
+        </div>
+      </div>
+    
+      <div class="form-group">        
+        <div class="col-sm-offset-2 col-sm-10">
+          <button type="submit" style="background-color:green;color:white" class="btn btn-default">Submit</button>
+        
+        </div>
+      </div>
+
+    </form>
+  </div>
+
+    
+    <div class="w3-container">
+        <div id="addnew" class="w3-modal displayblock" *ngIf="IsShowModalPopup">
+            <div class="w3-modal-content">
+                <header class="w3-container w3-teal"> 
+                    <span (click)="IsShowModalPopup = false" 
+                    class="w3-button w3-display-topright">&times;</span>
+                    <h2>Manage Booking</h2>
+                </header>
+        
+            
+    <div class="container">
+        
+        <form [formGroup]="Bookingform" (ngSubmit)="TicketBooking()">
+        
+    <br>
+
+          <div class="form-group">
+            <label class="control-label col-sm-2" for="pwd">EmailId:</label>
+            <div class="col-sm-10">          
+                <input type="text"  formControlName ="EmailId" required class="form-control" >
+            </div>
+          </div>
+    
+
+          <div class="form-group">
+            <label class="control-label col-sm-2" for="pwd">OptMeal:</label>
+            <div class="col-sm-10">   
+                <select id="meal" formControlName = OptMeal required class="form-control">
+                    <option value="VEG"> VEG </option>
+                    <option value="NONVEG"> NON VEG </option>
+                </select>       
+            </div>
+          </div>
+ 
+          <div class="form-group">
+            <label class="control-label col-sm-2" for="pwd">Rountrip:</label>
+            <div class="col-sm-10">    
+                <select id="meal" formControlName = Rountrip required class="form-control">
+                    <option value="Yes"> YES </option>
+                    <option value="No"> NO </option>
+                </select>       
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="control-label col-sm-2" for="pwd">NoofSeatedBooked:</label>
+            <div class="col-sm-10">          
+                <input type="number" formControlName ="NoofSeatedBooked" required class="form-control" >
+            </div>
+          </div>
+
+
+          <div class="form-group">
+            <label class="control-label col-sm-2" for="pwd">Type:</label>
+            <div class="col-sm-10"> 
+                
+                <select id="type" formControlName = Type required class="form-control">
+                    <option value="Economy Class"> Economy </option>
+                    <option value="Business Class"> Business </option>
+                    <option value="First Class"> First </option>
+                </select>  
+                
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="control-label col-sm-2" for="pwd">Apply Discount?:</label>
+           
+                <span id="discode"  *ngIf="Bookingform.value.DiscountCode !='' " style="font-family: Arial Unicode MS, Lucida Grande;">
+                    &#10004; </span>
+
+            <div class="col-sm-10"> 
+                <input type="text" formControlName ="DiscountCode"  class="form-control" >
+                
+            </div>
+          </div>
+
+          
+          <div class="form-group">        
+            <div class="col-sm-offset-2 col-sm-10">
+              <button type="submit" style="background-color:green;color:white" class="btn btn-default">Submit</button>
+              <br>
+              <br>
+            </div>
+          </div>
+        </form>
+      </div>
+          </div>
+        </div>
+     </div>
+                  
+    
+    <div class="container" >
+        <button (click)='getAllInventory()' style="background-color:blue; color:white;float:right; width:160px;" class="form-control" >Show All</button>
+      <br><br>
+      
+      <table class="table">
+        
+        <thead>
+            <tr>
+              <th>Inventory Id</th>
+              <th>AirlineName</th>
+              <th>Source </th>
+              <th>Destination</th>
+              <th>Start Date</th>
+              <th>End Date</th>
+              <th>Modified Date</th>
+              <th>Business Seat</th>
+              <th>Non Business Seat</th>
+              <th>Instrument Used</th>
+              <th>Ticket Cost</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let item of dataSource">   
+                
+                  <td *ngIf="item.isActive" >{{item.inventoryId}}</td> 
+                  <td *ngIf="item.isActive" > {{item.airlineLogo?.airlineName}}</td>
+                  <td *ngIf="item.isActive" >{{item.fromPlace}}</td>
+                  <td *ngIf="item.isActive" >{{item.toPlace}}</td>
+                  <td *ngIf="item.isActive" >{{item.startDate | date:'shortDate'}}</td>
+                  <td *ngIf="item.isActive" >{{item.endDate | date:'shortDate'}}</td>
+                  <td *ngIf="item.isActive" >{{item.modifiedDate | date:'shortDate'}}</td>    
+                  <td *ngIf="item.isActive" >{{item.no_Booked_BC}}</td>
+                  <td *ngIf="item.isActive" >{{item.no_Booked_NonBC}}</td>                 
+                  <td *ngIf="item.isActive" >{{item.instrumentUsed}}</td>
+                  <td *ngIf="item.isActive" >{{item.ticketCost}}</td>        
+                  <!-- <td *ngIf="item.isActive" >{{item.isActive}}</td>    -->
+                  <td *ngIf="item.isActive" ><button (click)="onBookTicket(item)" style="background-color: green; color:white" class="w3-button  addnew">Book</button></td>
+              
+                
+                </tr>
+          </tbody>
+      </table>
+    </div>
+    
+    </body>
+    </html>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+   

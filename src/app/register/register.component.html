@@ -1,0 +1,94 @@
+
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <title>Bootstrap Example</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+      <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+    </head>
+    <body>
+<style>
+
+body {
+    background-color:white;
+    width:500px;
+    height:500px;
+}
+        </style>
+    
+        <div class="container">
+
+    <form class="form-horizontal" action="/action_page.php"  [formGroup]="registerForm" (ngSubmit)="REGISTER()" >
+<br>
+<h4 style="color:purple">Registration Form</h4>
+<br>
+      <div class="form-group">
+        <label class="control-label col-sm-2" for="email">UserName:</label>
+        <div class="col-sm-10">
+            <input type="text" name="name" formControlName ="UserName" required class="form-control">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-sm-2" for="pwd">Password:</label>
+        <div class="col-sm-10">          
+            <input type="password" name="Password" formControlName ="Password" required class="form-control" >
+        </div>
+      </div>
+    
+
+      <div class="form-group">
+        <label class="control-label col-sm-2" for="pwd">EmailId:</label>
+        <div class="col-sm-10">          
+            <input type="text" name="EmailId" formControlName ="EmailId" required class="form-control" >
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label col-sm-2" for="pwd">Role:</label>
+        <div class="col-sm-10">          
+            <input type="text" name="Role" formControlName ="Role" required class="form-control" >
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label col-sm-2" for="pwd">Age:</label>
+        <div class="col-sm-10">          
+            <input type="text" name="Role" formControlName ="Age" required class="form-control" >
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label col-sm-2" for="pwd">Gender:</label>
+        <div class="col-sm-10">          
+            <input type="text" name="Gender" formControlName ="Gender" requiredclass="form-control" >
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label col-sm-2" for="pwd">MobileNumber:</label>
+        <div class="col-sm-10">          
+            <input type="number" name="MobileNumber" formControlName ="MobileNumber" required class="form-control" >
+        </div>
+      </div>
+
+     
+      <div class="form-group">        
+        <div class="col-sm-offset-2 col-sm-10">
+          <button type="submit" style="background-color:green;color:white" class="btn btn-default">REGISTER</button>
+          
+        </div>
+      </div>
+    </form>
+  </div>
+
+
+
+
+
+   

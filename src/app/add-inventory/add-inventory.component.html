@@ -1,0 +1,177 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+
+    <style>
+        
+.table th{
+    background-color:antiquewhite
+}
+  .addnew{
+      background-color:mediumblue;
+    color:white;
+      float:right;
+    
+     
+  }      
+</style>
+
+
+<div class="w3-container">
+    <div id="addnew" class="w3-modal">
+        <div class="w3-modal-content">
+            <header class="w3-container w3-teal"> 
+                <span onclick="document.getElementById('addnew').style.display='none'" 
+                class="w3-button w3-display-topright">&times;</span>
+                <h2>Manage Scheduled</h2>
+            </header>
+       
+<div class="container">
+    
+    <form class="form-horizontal" action="/action_page.php" [formGroup]="inventoryform" (ngSubmit)="ManageAirline()">
+        <br>
+      <div class="form-group">
+        <label class="control-label col-sm-2" for="email">AirlineId:</label>
+        <div class="col-sm-10">
+            <input type="number" placeholder="AirlineId" formControlName ="AirlineId" class="form-control">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-sm-2" for="pwd">FromPlace:</label>
+        <div class="col-sm-10">          
+            <input type="text" placeholder="FromPlace" formControlName ="FromPlace" class="form-control" >
+        </div>
+      </div>
+    
+
+      <div class="form-group">
+        <label class="control-label col-sm-2" for="pwd">ToPlace:</label>
+        <div class="col-sm-10">          
+            <input type="text" placeholder="ToPlace" formControlName ="ToPlace" class="form-control" >
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label col-sm-2" for="pwd">StartDate:</label>
+        <div class="col-sm-10">          
+            <input type="date" placeholder="StartDate" formControlName ="StartDate" class="form-control" >
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-sm-2" for="pwd">EndDate:</label>
+        <div class="col-sm-10">          
+            <input type="date" placeholder="EndDate" formControlName ="EndDate" class="form-control" >
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-sm-4" for="pwd">BusinessClass Seat:</label>
+        <div class="col-sm-10">          
+            <input type="number" placeholder="Total_BusinessClass_Seat" formControlName ="Total_BusinessClass_Seat" class="form-control" >
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-sm-4" for="pwd">Non BusinessClass Seat:</label>
+        <div class="col-sm-10">          
+            <input type="number" placeholder="Total_NonBusinessClass_Seat" formControlName ="Total_NonBusinessClass_Seat" class="form-control" >
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-sm-4" for="pwd">InstrumentUsed:</label>
+        <div class="col-sm-10">          
+            <input type="text" placeholder="InstrumentUsed" formControlName ="InstrumentUsed" class="form-control" >
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label col-sm-4" for="pwd">TicketCost:</label>
+        <div class="col-sm-10">          
+            <input type="number" placeholder="TicketCost" formControlName ="TicketCost" class="form-control" >
+        </div>
+      </div>
+
+ 
+      <div class="form-group">        
+        <div class="col-sm-offset-2 col-sm-10">
+          <button type="submit" style="background-color:green;color:white" class="btn btn-default">Submit</button>
+          
+        </div>
+      </div>
+    </form>
+  </div>
+      </div>
+    </div>
+ </div>
+              
+
+<div class="container">
+  <br><br>
+    <button onclick="document.getElementById('addnew').style.display='block'" class="w3-button  addnew">Add Inventory</button>
+  
+  <table class="table">
+    
+    <thead>
+      <tr>
+        <th>Inventory Id</th>
+        <th>AirlineName</th>
+        <th>Source </th>
+        <th>Destination</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Modified Date</th>
+        <th>Business Seat</th>
+        <th>Non Business Seat</th>
+        <th>Instrument Used</th>
+        <th>Ticket Cost</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of dataSource">
+        
+           
+            <td>{{item.inventoryId}}</td> 
+            <td> {{item.airlineLogo?.airlineName}}</td>
+            <td>{{item.fromPlace}}</td>
+            <td>{{item.toPlace}}</td>
+            <td>{{item.startDate | date}}</td>
+            <td>{{item.endDate | date}}</td>
+            <td>{{item.modifiedDate | date}}</td> 
+            <td>{{item.total_BusinessClass_Seat}}</td>
+            <td>{{item.total_NonBusinessClass_Seat}}</td>
+            <td>{{item.instrumentUsed}}</td>
+            <td>{{item.ticketCost}}</td>         
+             <!-- <td>{{item.isActive}}</td>  -->
+             <td  *ngIf="!item.isActive">
+                <button class="w3-button addnew"  style="background-color:grey;color:white;width:80px;" >InActive</button>
+             </td>
+             <td  *ngIf="item.isActive">
+                <button class="w3-button addnew"  style="background-color:red;color:white;width:80px;" >Active</button>
+             </td>
+          </tr>
+     
+    </tbody>
+  </table>
+</div>
+
+</body>
+</html>
+
+
+
+
+
+
+
+

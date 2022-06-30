@@ -1,0 +1,116 @@
+
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <title>Bootstrap Example</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+      <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+    </head>
+    <body>
+    
+        <style>
+            
+    .table th{
+        background-color:antiquewhite;
+    }
+      .addnew{
+          background-color:mediumblue;
+        color:white;
+          float:right;
+         
+      }      
+    </style>
+       
+    
+    <div class="container" >
+    
+      <br><br>
+      
+      <table class="table">
+        
+        <thead>
+            <tr>
+              <th>Inventory Id</th>
+              <!-- <th>AirlineName</th> -->
+              <th>Email</th>
+              <th>Ticket PNR</th>
+              <th>Source </th>
+              <th>Destination</th>
+              <th>Start Date</th>
+              <th>End Date</th>
+              <th>Type</th>
+              <th>Seats</th> 
+              <th>Ticket Cost</th>
+              
+              <th>Download</th>
+              <th>Cancel</th>
+            </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let item of dataSource" style="width:800px"> 
+                    <td> {{item.inventoryId}} </td>
+                    <!-- <td>{{item.inventory?.airlineName}}</td> -->
+                    <td>{{item.emailId}}</td>
+                    <td>{{item.ticketPNR}}</td>
+                    <td> {{item.inventory?.fromPlace}}</td>
+                     <td> {{item.inventory?.toPlace}}</td>
+                     <td> {{item.inventory?.startDate | date }}  </td>
+                     <td> {{item.inventory?.endDate | date}}</td>  
+                     <td>{{item.type}}</td>
+                     <td>{{item.noofSeatedBooked}}</td>
+      
+                     <td  *ngIf="item.inventory?.ticketCost > item.cost">
+                       <span style="font-family: Arial Unicode MS, Lucida Grande">
+                        {{item.cost}} &#10004; 
+                        </span>
+                        </td>
+
+                        <td *ngIf="item.inventory?.ticketCost == item.cost ">
+                            {{item.cost}}
+                           </td>
+                        
+
+                   
+                    
+                <td>
+                    <button (click)='Download(item)' style="background-color: green; color:white" class="w3-button  addnew">Download</button>
+                    
+                <td>
+                    <button (click)='cancelbooking(item)'  class="w3-button addnew"  style="background-color:orangered;color:white" >Cancel</button> 
+                 
+                </td> 
+                  
+                   
+
+                </tr>
+           
+          </tbody>
+          <tbody>
+            <tr *ngFor="let item of EmptyData" style="width:800px"> 
+
+              <h3>No Data Found</h3>
+              </tr>
+          </tbody>
+
+      </table>
+    </div>
+    
+    </body>
+    </html>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+   
